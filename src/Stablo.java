@@ -5,35 +5,12 @@ import java.util.Scanner;
 import java.util.Stack;
 
 public class Stablo {
-    private static class Cvor{
-        String naziv;
-        ArrayList<Cvor> sledeci = new ArrayList<>();
+    private static Cvor root = null;
+    private File file;
 
-        public Cvor(String naziv){
-            this.naziv = naziv;
-        }
-
-        public boolean postoji(Cvor novi){
-            boolean a = false;
-            for (Cvor cvor : this.sledeci) {
-                if (cvor.naziv.compareTo(novi.naziv) == 0) {
-                    a = true;
-                    break;
-                }
-            }
-            return a;
-        }
-
-        public void obrisi() {
-            for (Cvor child : sledeci) {
-                child.obrisi();
-            }
-            sledeci.clear();
-        }
+    public static Cvor getRoot() {
+        return root;
     }
-
-    private Cvor root = null;
-    File file;
 
     public void ucitavanje(String path) throws FileNotFoundException {
         file = new File(path);
